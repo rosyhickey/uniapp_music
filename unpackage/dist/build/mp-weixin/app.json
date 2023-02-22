@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/list/list",
+    "pages/about/about",
+    "pages/user/user",
+    "pages/skippage/skippage"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#ff0000",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/static/tabbaricon/shouyexianxing.png",
+        "selectedIconPath": "static/selected/shouyexianxing-copy.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "列表",
+        "iconPath": "static/tabbaricon/gongchang.png",
+        "selectedIconPath": "static/selected/liebiao-copy.png"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "关于",
+        "iconPath": "static/tabbaricon/gongchang.png",
+        "selectedIconPath": "static/selected/gongchang-copy.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "static/tabbaricon/wodexianxing.png",
+        "selectedIconPath": "static/selected/wodexianxing-copy.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

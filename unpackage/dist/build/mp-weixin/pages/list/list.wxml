@@ -1,0 +1,1 @@
+<view><uni-nav-bar vue-id="2e637200-1" shadow="{{true}}" title="导航栏组件" bind:__l="__l"></uni-nav-bar><uni-nav-bar vue-id="2e637200-2" dark="{{true}}" title="导航栏组件" bind:__l="__l"></uni-nav-bar><uni-nav-bar vue-id="2e637200-3" left-text="返回" right-text="设置" title="标题" bind:__l="__l"></uni-nav-bar></view>

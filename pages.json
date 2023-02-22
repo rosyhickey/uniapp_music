@@ -1,0 +1,104 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "主页",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#CCCCFF"
+				
+			}
+		},
+		{
+		    "path" : "pages/list/list",
+			"style": {
+				"navigationBarTitleText": "音乐列表",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#CCCCFF"
+			}
+		},
+		{
+            "path" : "pages/about/about",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "关于我们",
+                "enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#CCCCFF"
+            }
+            
+        },
+		{
+            "path" : "pages/user/user",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "个人中心",
+                "enablePullDownRefresh": false,
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#CCCCFF"
+            }
+            
+        }
+        ,{
+            "path" : "pages/skippage/skippage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "跳转界面",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "components/details/details",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "歌手列表信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+       
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#000000",
+		"selectedColor": "#ff0000",
+		// "backgroundColor": "#66FF33",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "主页",
+				"iconPath": "/static/tabbaricon/shouyexianxing.png",
+				"selectedIconPath": "static/selected/shouyexianxing-copy.png"
+				
+			},
+			{
+				"pagePath": "pages/list/list",
+				"text": "列表",
+				"iconPath": "static/tabbaricon/gongchang.png",
+				"selectedIconPath": "static/selected/liebiao-copy.png"
+				
+			},
+			{
+				"pagePath": "pages/about/about",
+				"text": "关于",
+				"iconPath": "static/tabbaricon/gongchang.png",
+				"selectedIconPath": "static/selected/gongchang-copy.png"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我的",
+				"iconPath": "static/tabbaricon/wodexianxing.png",
+				"selectedIconPath": "static/selected/wodexianxing-copy.png"
+			}
+		]
+	}
+}

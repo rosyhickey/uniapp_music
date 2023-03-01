@@ -51,8 +51,9 @@
 		</view>
 		
 		<!-- 随机祝福语 -->
-		<view class="wishbox">
-			<span class="wishtext">"Bless You!"</span>
+		<view class="wishbox" @click="change">
+			<!-- <span class="wishtext">"Bless You!"</span> -->
+			<span class="wishtext">{{wishtext}}</span>
 		</view>
 		
 		<!-- 底部二维码 -->
@@ -75,7 +76,8 @@ import music from '@/js/music';
 			return {
 				name: 'RosyHickey',
 				musicstate:false,
-				date: Date.now()
+				date: Date.now(),
+				wishtext:''
 			}
 		},
 		// computed: {
@@ -85,6 +87,19 @@ import music from '@/js/music';
 		// 		}
 		// 	}
 		// },
+		onLoad() {
+			uni.request({
+				url:"https://api.uomg.com/api/rand.qinghua",
+				success: (res) => {
+					this.wishtext = res.data.content
+					uni.showToast({
+						title: '点击情话刷新',
+						duration: 1500
+					});
+
+				}
+			})
+		},
 		methods: {
 			mojito() {
 				music.mojito()
@@ -95,7 +110,15 @@ import music from '@/js/music';
 			yintian() {
 				music.yintian()
 			},
-			
+			change(){
+				uni.request({
+					url:"https://api.uomg.com/api/rand.qinghua",
+					success: (res) => {
+						console.log(res.data.content);
+						this.wishtext = res.data.content
+					}
+				})
+			}
 		},
 	}
 </script>
@@ -130,6 +153,7 @@ import music from '@/js/music';
 				}
 				
 			}
+			// 日期
 			.date{
 				width: 240rpx;
 				height: 50rpx;
@@ -201,14 +225,16 @@ import music from '@/js/music';
 			padding-top: 50rpx;
 			width: 500rpx;
 			height: 100rpx;
+			// background-color: pink;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			margin-left: 125rpx;
+			margin-top: 50rpx;
 			.wishtext{
 				text-align: center;
 				line-height: 100rpx;
-				font-size: 50rpx;
+				font-size: 30rpx;
 				font-family: cursive;  //草书
 			}
 		}
@@ -220,8 +246,10 @@ import music from '@/js/music';
 		}
 		//跳转测试
 		.btnbox{
+			// background-color: skyblue;
 			width: 200rpx;
 			margin-left: 275rpx;
+			margin-top: 200rpx;
 			.btn{
 				width: 200rpx;
 				border-radius: 10px;	

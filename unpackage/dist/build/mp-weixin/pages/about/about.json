@@ -3,5 +3,10 @@
   "enablePullDownRefresh": false,
   "navigationBarTextStyle": "white",
   "navigationBarBackgroundColor": "#CCCCFF",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "uni-grid": "/uni_modules/uni-grid/components/uni-grid/uni-grid",
+    "uni-grid-item": "/uni_modules/uni-grid/components/uni-grid-item/uni-grid-item",
+    "uni-fab": "/uni_modules/uni-fab/components/uni-fab/uni-fab"
+  }
 }

@@ -1,5 +1,5 @@
 <template>
-	<view class="body">
+	<view class="body" style="background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/32178170243791580094073238/EWMBFISS46gA.jpg);">
 		<view class="top">
 			<!-- 搜索框 -->
 			<uni-search-bar
@@ -158,7 +158,7 @@
 <style lang="scss">
 	.body{
 		height: 800px;
-		background-image: url(/static/flower.jpg);
+		// background-image: url(/static/flower.jpg);
 		background-size: 100%;
 		position: relative;
 	}

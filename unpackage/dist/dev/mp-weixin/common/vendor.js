@@ -1524,7 +1524,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -8878,7 +8878,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8899,14 +8899,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9002,7 +9002,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"music","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9571,7 +9571,85 @@ function normalizeComponent (
 /* 39 */,
 /* 40 */,
 /* 41 */,
-/* 42 */,
+/* 42 */
+/*!*************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/js/music.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 播放音乐文件
+// 在外面创建  不然会有多个音乐同时播放
+var innerAudioContext = uni.createInnerAudioContext();
+innerAudioContext.autoplay = false;
+var _default = {
+  mojito: function mojito() {
+    this.musicstate = !this.musicstate;
+    console.log(this.musicstate);
+    innerAudioContext.src = 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/346c266d243791580094172451/vvwOx56MD54A.mp3';
+    // innerAudioContext.playbackRate = 1.5;
+    if (this.musicstate) {
+      innerAudioContext.play();
+      innerAudioContext.onPlay(function () {
+        console.log('开始播放');
+      });
+    } else {
+      innerAudioContext.pause();
+      innerAudioContext.onPause(function () {
+        console.log('暂停播放');
+      });
+    }
+  },
+  youkelili: function youkelili() {
+    this.musicstate = !this.musicstate;
+    console.log(this.musicstate);
+    // const innerAudioContext = uni.createInnerAudioContext();
+    // innerAudioContext.autoplay = false;
+    innerAudioContext.src = 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71773c3b243791580098549147/n3hVGyw7B3oA.mp3';
+    // innerAudioContext.playbackRate = 1.5;
+    if (this.musicstate) {
+      innerAudioContext.play();
+      innerAudioContext.onPlay(function () {
+        console.log('开始播放');
+      });
+    } else {
+      innerAudioContext.pause();
+      innerAudioContext.onPause(function () {
+        console.log('暂停播放');
+      });
+    }
+  },
+  yintian: function yintian() {
+    this.musicstate = !this.musicstate;
+    console.log(this.musicstate);
+    // const innerAudioContext = uni.createInnerAudioContext();
+    // innerAudioContext.autoplay = false;
+    innerAudioContext.src = 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/32189a4b243791580094075240/artIwip0np8A.flac';
+    // innerAudioContext.playbackRate = 1.5;
+    if (this.musicstate) {
+      innerAudioContext.play();
+      innerAudioContext.onPlay(function () {
+        console.log('开始播放');
+      });
+    } else {
+      innerAudioContext.pause();
+      innerAudioContext.onPause(function () {
+        console.log('暂停播放');
+      });
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
 /* 43 */,
 /* 44 */,
 /* 45 */,
@@ -9588,7 +9666,65 @@ function normalizeComponent (
 /* 56 */,
 /* 57 */,
 /* 58 */,
-/* 59 */,
+/* 59 */
+/*!***************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/store/list.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// 歌手列表
+var _default = {
+  singer: {
+    list: [{
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/33ef290e243791580094105690/KbIX8fifQfsA.png',
+      text: '周杰伦',
+      song: '七里香、青花瓷、双截棍、简单爱、夜曲、以父之名、稻香、龙卷风、一路向北、晴天'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/33ecee26243791580094101425/2nSAl9ewfy8A.png',
+      text: '莫文蔚',
+      song: '忽然之间、他不爱我、如果没有你、盛夏的果实、电台情歌、爱、阴天'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/323df537243791580094097653/C9qvxrlDTiMA.png',
+      text: '陈奕迅',
+      song: 'K歌之王、十年、浮夸、富士山下、最佳损友、单车、好久不见、阴天快乐、不要说话'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71848377243791580098550871/9mwQwn253pcA.png',
+      text: '郭富城',
+      song: '对你爱不完、最好的声音、爱情、我一直走、痛哭'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/717255b0243791580098540370/f6K28UCZ4hUA.png',
+      text: '张国荣',
+      song: '沉默是金、风继续吹、Monica、当年情、倩女幽魂(歌曲)、我、无心睡眠'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/714e1b68243791580098520112/mx1jQUy0dUoA.png',
+      text: '刘德华',
+      song: '忘情水、谢谢你的爱、冰雨、练习、笨小孩、男人哭吧不是罪'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/7188e9fa243791580098558911/paNqzmn35gYA.png',
+      text: 'Lady Gaga',
+      song: 'The Cure、Poker Face、Bad Romance、Born This Way、Million Reasons'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/7165351d243791580098539573/iraw5VKQ2JYA.png',
+      text: 'Taylor Swift',
+      song: 'Love Story、betty、Red、Only The Young、I Knew You Were Trouble'
+    }, {
+      url: 'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/714e1790243791580098520048/4uCd2Dmxk8MA.png',
+      text: 'Justin Bieber',
+      song: 'Love Yourself、Baby、Let Me Love You、Sorry'
+    }]
+  }
+};
+exports.default = _default;
+
+/***/ }),
 /* 60 */,
 /* 61 */,
 /* 62 */,
@@ -9606,7 +9742,19 @@ function normalizeComponent (
 /* 74 */,
 /* 75 */,
 /* 76 */,
-/* 77 */
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */
 /*!*****************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \*****************************************************************************************************************/
@@ -10627,12 +10775,236 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */
+/*!*********************************************************************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-dateformat/components/uni-dateformat/date-format.js ***!
+  \*********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatDate = formatDate;
+exports.friendlyDate = friendlyDate;
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
+// yyyy-MM-dd hh:mm:ss.SSS 所有支持的类型
+function pad(str) {
+  var length = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+  str += '';
+  while (str.length < length) {
+    str = '0' + str;
+  }
+  return str.slice(-length);
+}
+var parser = {
+  yyyy: function yyyy(dateObj) {
+    return pad(dateObj.year, 4);
+  },
+  yy: function yy(dateObj) {
+    return pad(dateObj.year);
+  },
+  MM: function MM(dateObj) {
+    return pad(dateObj.month);
+  },
+  M: function M(dateObj) {
+    return dateObj.month;
+  },
+  dd: function dd(dateObj) {
+    return pad(dateObj.day);
+  },
+  d: function d(dateObj) {
+    return dateObj.day;
+  },
+  hh: function hh(dateObj) {
+    return pad(dateObj.hour);
+  },
+  h: function h(dateObj) {
+    return dateObj.hour;
+  },
+  mm: function mm(dateObj) {
+    return pad(dateObj.minute);
+  },
+  m: function m(dateObj) {
+    return dateObj.minute;
+  },
+  ss: function ss(dateObj) {
+    return pad(dateObj.second);
+  },
+  s: function s(dateObj) {
+    return dateObj.second;
+  },
+  SSS: function SSS(dateObj) {
+    return pad(dateObj.millisecond, 3);
+  },
+  S: function S(dateObj) {
+    return dateObj.millisecond;
+  }
+};
+
+// 这都n年了iOS依然不认识2020-12-12，需要转换为2020/12/12
+function getDate(time) {
+  if (time instanceof Date) {
+    return time;
+  }
+  switch ((0, _typeof2.default)(time)) {
+    case 'string':
+      {
+        // 2020-12-12T12:12:12.000Z、2020-12-12T12:12:12.000
+        if (time.indexOf('T') > -1) {
+          return new Date(time);
+        }
+        return new Date(time.replace(/-/g, '/'));
+      }
+    default:
+      return new Date(time);
+  }
+}
+function formatDate(date) {
+  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy/MM/dd hh:mm:ss';
+  if (!date && date !== 0) {
+    return '';
+  }
+  date = getDate(date);
+  var dateObj = {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+    second: date.getSeconds(),
+    millisecond: date.getMilliseconds()
+  };
+  var tokenRegExp = /yyyy|yy|MM|M|dd|d|hh|h|mm|m|ss|s|SSS|SS|S/;
+  var flag = true;
+  var result = format;
+  while (flag) {
+    flag = false;
+    result = result.replace(tokenRegExp, function (matched) {
+      flag = true;
+      return parser[matched](dateObj);
+    });
+  }
+  return result;
+}
+function friendlyDate(time, _ref) {
+  var _ref$locale = _ref.locale,
+    locale = _ref$locale === void 0 ? 'zh' : _ref$locale,
+    _ref$threshold = _ref.threshold,
+    threshold = _ref$threshold === void 0 ? [60000, 3600000] : _ref$threshold,
+    _ref$format = _ref.format,
+    format = _ref$format === void 0 ? 'yyyy/MM/dd hh:mm:ss' : _ref$format;
+  if (time === '-') {
+    return time;
+  }
+  if (!time && time !== 0) {
+    return '';
+  }
+  var localeText = {
+    zh: {
+      year: '年',
+      month: '月',
+      day: '天',
+      hour: '小时',
+      minute: '分钟',
+      second: '秒',
+      ago: '前',
+      later: '后',
+      justNow: '刚刚',
+      soon: '马上',
+      template: '{num}{unit}{suffix}'
+    },
+    en: {
+      year: 'year',
+      month: 'month',
+      day: 'day',
+      hour: 'hour',
+      minute: 'minute',
+      second: 'second',
+      ago: 'ago',
+      later: 'later',
+      justNow: 'just now',
+      soon: 'soon',
+      template: '{num} {unit} {suffix}'
+    }
+  };
+  var text = localeText[locale] || localeText.zh;
+  var date = getDate(time);
+  var ms = date.getTime() - Date.now();
+  var absMs = Math.abs(ms);
+  if (absMs < threshold[0]) {
+    return ms < 0 ? text.justNow : text.soon;
+  }
+  if (absMs >= threshold[1]) {
+    return formatDate(date, format);
+  }
+  var num;
+  var unit;
+  var suffix = text.later;
+  if (ms < 0) {
+    suffix = text.ago;
+    ms = -ms;
+  }
+  var seconds = Math.floor(ms / 1000);
+  var minutes = Math.floor(seconds / 60);
+  var hours = Math.floor(minutes / 60);
+  var days = Math.floor(hours / 24);
+  var months = Math.floor(days / 30);
+  var years = Math.floor(months / 12);
+  switch (true) {
+    case years > 0:
+      num = years;
+      unit = text.year;
+      break;
+    case months > 0:
+      num = months;
+      unit = text.month;
+      break;
+    case days > 0:
+      num = days;
+      unit = text.day;
+      break;
+    case hours > 0:
+      num = hours;
+      unit = text.hour;
+      break;
+    case minutes > 0:
+      num = minutes;
+      unit = text.minute;
+      break;
+    default:
+      num = seconds;
+      unit = text.second;
+      break;
+  }
+  if (locale === 'en') {
+    if (num === 1) {
+      num = 'a';
+    } else {
+      unit += 's';
+    }
+  }
+  return text.template.replace(/{\s*num\s*}/g, num + '').replace(/{\s*unit\s*}/g, unit).replace(/{\s*suffix\s*}/g, suffix);
+}
+
+/***/ }),
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */
 /*!********************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
   \********************************************************************************************************************************/
@@ -10647,9 +11019,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 84));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 85));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 86));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 104));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 105));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 106));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -10658,7 +11030,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 84 */
+/* 104 */
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
   \*******************************************************************************************************************************/
@@ -10668,7 +11040,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
 
 /***/ }),
-/* 85 */
+/* 105 */
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
   \************************************************************************************************************************************/
@@ -10678,7 +11050,7 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
 
 /***/ }),
-/* 86 */
+/* 106 */
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
   \************************************************************************************************************************************/
@@ -10688,24 +11060,21 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"請輸入搜索內容\"}");
 
 /***/ }),
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */
 /*!********************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-pagination/components/uni-pagination/i18n/index.js ***!
   \********************************************************************************************************************************/
@@ -10720,11 +11089,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 105));
-var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 106));
-var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 107));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 108));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 109));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 122));
+var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 123));
+var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 124));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 125));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 126));
 var _default = {
   en: _en.default,
   es: _es.default,
@@ -10735,7 +11104,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 105 */
+/* 122 */
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-pagination/components/uni-pagination/i18n/en.json ***!
   \*******************************************************************************************************************************/
@@ -10745,7 +11114,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-pagination.nextText\":\"next\",\"uni-pagination.piecePerPage\":\"piece/page\"}");
 
 /***/ }),
-/* 106 */
+/* 123 */
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-pagination/components/uni-pagination/i18n/es.json ***!
   \*******************************************************************************************************************************/
@@ -10755,7 +11124,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-paginat
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pagination.nextText\":\"prxima\",\"uni-pagination.piecePerPage\":\"Art��culo/P��gina\"}");
 
 /***/ }),
-/* 107 */
+/* 124 */
 /*!*******************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-pagination/components/uni-pagination/i18n/fr.json ***!
   \*******************************************************************************************************************************/
@@ -10765,7 +11134,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pag
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni-pagination.nextText\":\"suivante\",\"uni-pagination.piecePerPage\":\"Articles/Pages\"}");
 
 /***/ }),
-/* 108 */
+/* 125 */
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hans.json ***!
   \************************************************************************************************************************************/
@@ -10775,7 +11144,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pagination.nextText\":\"下一页\",\"uni-pagination.piecePerPage\":\"条/页\"}");
 
 /***/ }),
-/* 109 */
+/* 126 */
 /*!************************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hant.json ***!
   \************************************************************************************************************************************/
@@ -10785,100 +11154,6 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pa
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一頁\",\"uni-pagination.nextText\":\"下一頁\",\"uni-pagination.piecePerPage\":\"條/頁\"}");
 
 /***/ }),
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */
-/*!*********************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/components/music.js ***!
-  \*********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-// 播放音乐文件
-var _default = {
-  mojito: function mojito() {
-    this.musicstate = !this.musicstate;
-    console.log(this.musicstate);
-    var innerAudioContext = uni.createInnerAudioContext();
-    innerAudioContext.autoplay = false;
-    innerAudioContext.src = '/static/music/mojito.mp3';
-    // innerAudioContext.playbackRate = 1.5;
-    if (this.musicstate) {
-      innerAudioContext.play();
-      innerAudioContext.onPlay(function () {
-        console.log('开始播放');
-      });
-    } else {
-      innerAudioContext.pause();
-      innerAudioContext.onPause(function () {
-        console.log('暂停播放');
-      });
-    }
-  },
-  youkelili: function youkelili() {
-    this.musicstate = !this.musicstate;
-    console.log(this.musicstate);
-    var innerAudioContext = uni.createInnerAudioContext();
-    innerAudioContext.autoplay = false;
-    innerAudioContext.src = '/static/music/youkelili.mp3';
-    // innerAudioContext.playbackRate = 1.5;
-    if (this.musicstate) {
-      innerAudioContext.play();
-      innerAudioContext.onPlay(function () {
-        console.log('开始播放');
-      });
-    } else {
-      innerAudioContext.pause();
-      innerAudioContext.onPause(function () {
-        console.log('暂停播放');
-      });
-    }
-  },
-  yintian: function yintian() {
-    this.musicstate = !this.musicstate;
-    console.log(this.musicstate);
-    var innerAudioContext = uni.createInnerAudioContext();
-    innerAudioContext.autoplay = false;
-    innerAudioContext.src = '/static/music/yintian.flac';
-    // innerAudioContext.playbackRate = 1.5;
-    if (this.musicstate) {
-      innerAudioContext.play();
-      innerAudioContext.onPlay(function () {
-        console.log('开始播放');
-      });
-    } else {
-      innerAudioContext.pause();
-      innerAudioContext.onPause(function () {
-        console.log('暂停播放');
-      });
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
 /* 127 */,
 /* 128 */,
 /* 129 */,
@@ -10900,7 +11175,28 @@ exports.default = _default;
 /* 145 */,
 /* 146 */,
 /* 147 */,
-/* 148 */
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */
 /*!**********************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-calendar/components/uni-calendar/util.js ***!
   \**********************************************************************************************************************/
@@ -10918,7 +11214,7 @@ exports.default = void 0;
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 149));
+var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 170));
 var Calendar = /*#__PURE__*/function () {
   function Calendar() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
@@ -11315,7 +11611,7 @@ var _default = Calendar;
 exports.default = _default;
 
 /***/ }),
-/* 149 */
+/* 170 */
 /*!**************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-calendar/components/uni-calendar/calendar.js ***!
   \**************************************************************************************************************************/
@@ -11832,7 +12128,7 @@ var _default = calendar;
 exports.default = _default;
 
 /***/ }),
-/* 150 */
+/* 171 */
 /*!****************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-calendar/components/uni-calendar/i18n/index.js ***!
   \****************************************************************************************************************************/
@@ -11847,9 +12143,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 151));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 152));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 153));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 172));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 173));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 174));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -11858,7 +12154,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 151 */
+/* 172 */
 /*!***************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-calendar/components/uni-calendar/i18n/en.json ***!
   \***************************************************************************************************************************/
@@ -11868,7 +12164,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-calender.ok\":\"ok\",\"uni-calender.cancel\":\"cancel\",\"uni-calender.today\":\"today\",\"uni-calender.MON\":\"MON\",\"uni-calender.TUE\":\"TUE\",\"uni-calender.WED\":\"WED\",\"uni-calender.THU\":\"THU\",\"uni-calender.FRI\":\"FRI\",\"uni-calender.SAT\":\"SAT\",\"uni-calender.SUN\":\"SUN\"}");
 
 /***/ }),
-/* 152 */
+/* 173 */
 /*!********************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-calendar/components/uni-calendar/i18n/zh-Hans.json ***!
   \********************************************************************************************************************************/
@@ -11878,7 +12174,7 @@ module.exports = JSON.parse("{\"uni-calender.ok\":\"ok\",\"uni-calender.cancel\"
 module.exports = JSON.parse("{\"uni-calender.ok\":\"确定\",\"uni-calender.cancel\":\"取消\",\"uni-calender.today\":\"今日\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\"}");
 
 /***/ }),
-/* 153 */
+/* 174 */
 /*!********************************************************************************************************************************!*\
   !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-calendar/components/uni-calendar/i18n/zh-Hant.json ***!
   \********************************************************************************************************************************/
@@ -11886,240 +12182,6 @@ module.exports = JSON.parse("{\"uni-calender.ok\":\"确定\",\"uni-calender.canc
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"uni-calender.ok\":\"確定\",\"uni-calender.cancel\":\"取消\",\"uni-calender.today\":\"今日\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\"}");
-
-/***/ }),
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */
-/*!*********************************************************************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/uniapp/firstDemo/demo1/uni_modules/uni-dateformat/components/uni-dateformat/date-format.js ***!
-  \*********************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.formatDate = formatDate;
-exports.friendlyDate = friendlyDate;
-var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 13));
-// yyyy-MM-dd hh:mm:ss.SSS 所有支持的类型
-function pad(str) {
-  var length = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
-  str += '';
-  while (str.length < length) {
-    str = '0' + str;
-  }
-  return str.slice(-length);
-}
-var parser = {
-  yyyy: function yyyy(dateObj) {
-    return pad(dateObj.year, 4);
-  },
-  yy: function yy(dateObj) {
-    return pad(dateObj.year);
-  },
-  MM: function MM(dateObj) {
-    return pad(dateObj.month);
-  },
-  M: function M(dateObj) {
-    return dateObj.month;
-  },
-  dd: function dd(dateObj) {
-    return pad(dateObj.day);
-  },
-  d: function d(dateObj) {
-    return dateObj.day;
-  },
-  hh: function hh(dateObj) {
-    return pad(dateObj.hour);
-  },
-  h: function h(dateObj) {
-    return dateObj.hour;
-  },
-  mm: function mm(dateObj) {
-    return pad(dateObj.minute);
-  },
-  m: function m(dateObj) {
-    return dateObj.minute;
-  },
-  ss: function ss(dateObj) {
-    return pad(dateObj.second);
-  },
-  s: function s(dateObj) {
-    return dateObj.second;
-  },
-  SSS: function SSS(dateObj) {
-    return pad(dateObj.millisecond, 3);
-  },
-  S: function S(dateObj) {
-    return dateObj.millisecond;
-  }
-};
-
-// 这都n年了iOS依然不认识2020-12-12，需要转换为2020/12/12
-function getDate(time) {
-  if (time instanceof Date) {
-    return time;
-  }
-  switch ((0, _typeof2.default)(time)) {
-    case 'string':
-      {
-        // 2020-12-12T12:12:12.000Z、2020-12-12T12:12:12.000
-        if (time.indexOf('T') > -1) {
-          return new Date(time);
-        }
-        return new Date(time.replace(/-/g, '/'));
-      }
-    default:
-      return new Date(time);
-  }
-}
-function formatDate(date) {
-  var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy/MM/dd hh:mm:ss';
-  if (!date && date !== 0) {
-    return '';
-  }
-  date = getDate(date);
-  var dateObj = {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-    day: date.getDate(),
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-    second: date.getSeconds(),
-    millisecond: date.getMilliseconds()
-  };
-  var tokenRegExp = /yyyy|yy|MM|M|dd|d|hh|h|mm|m|ss|s|SSS|SS|S/;
-  var flag = true;
-  var result = format;
-  while (flag) {
-    flag = false;
-    result = result.replace(tokenRegExp, function (matched) {
-      flag = true;
-      return parser[matched](dateObj);
-    });
-  }
-  return result;
-}
-function friendlyDate(time, _ref) {
-  var _ref$locale = _ref.locale,
-    locale = _ref$locale === void 0 ? 'zh' : _ref$locale,
-    _ref$threshold = _ref.threshold,
-    threshold = _ref$threshold === void 0 ? [60000, 3600000] : _ref$threshold,
-    _ref$format = _ref.format,
-    format = _ref$format === void 0 ? 'yyyy/MM/dd hh:mm:ss' : _ref$format;
-  if (time === '-') {
-    return time;
-  }
-  if (!time && time !== 0) {
-    return '';
-  }
-  var localeText = {
-    zh: {
-      year: '年',
-      month: '月',
-      day: '天',
-      hour: '小时',
-      minute: '分钟',
-      second: '秒',
-      ago: '前',
-      later: '后',
-      justNow: '刚刚',
-      soon: '马上',
-      template: '{num}{unit}{suffix}'
-    },
-    en: {
-      year: 'year',
-      month: 'month',
-      day: 'day',
-      hour: 'hour',
-      minute: 'minute',
-      second: 'second',
-      ago: 'ago',
-      later: 'later',
-      justNow: 'just now',
-      soon: 'soon',
-      template: '{num} {unit} {suffix}'
-    }
-  };
-  var text = localeText[locale] || localeText.zh;
-  var date = getDate(time);
-  var ms = date.getTime() - Date.now();
-  var absMs = Math.abs(ms);
-  if (absMs < threshold[0]) {
-    return ms < 0 ? text.justNow : text.soon;
-  }
-  if (absMs >= threshold[1]) {
-    return formatDate(date, format);
-  }
-  var num;
-  var unit;
-  var suffix = text.later;
-  if (ms < 0) {
-    suffix = text.ago;
-    ms = -ms;
-  }
-  var seconds = Math.floor(ms / 1000);
-  var minutes = Math.floor(seconds / 60);
-  var hours = Math.floor(minutes / 60);
-  var days = Math.floor(hours / 24);
-  var months = Math.floor(days / 30);
-  var years = Math.floor(months / 12);
-  switch (true) {
-    case years > 0:
-      num = years;
-      unit = text.year;
-      break;
-    case months > 0:
-      num = months;
-      unit = text.month;
-      break;
-    case days > 0:
-      num = days;
-      unit = text.day;
-      break;
-    case hours > 0:
-      num = hours;
-      unit = text.hour;
-      break;
-    case minutes > 0:
-      num = minutes;
-      unit = text.minute;
-      break;
-    default:
-      num = seconds;
-      unit = text.second;
-      break;
-  }
-  if (locale === 'en') {
-    if (num === 1) {
-      num = 'a';
-    } else {
-      unit += 's';
-    }
-  }
-  return text.template.replace(/{\s*num\s*}/g, num + '').replace(/{\s*unit\s*}/g, unit).replace(/{\s*suffix\s*}/g, suffix);
-}
 
 /***/ })
 ]]);

@@ -40,7 +40,7 @@
 			return {
 				showRight: false,
 				showLeft: false,
-				src:'/static/singer/zhoujielun.png'
+				src:'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/33ef290e243791580094105690/KbIX8fifQfsA.png'
 			}
 		},
 		methods: {
@@ -83,7 +83,7 @@
 	.box{
 		width: 100%;
 		height: 800px;
-		background-image: url(/static/userbgi.png);
+		background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/346ef0f4243791580094177741/ZXgYu8JYAIIA.png);
 		background-size: 100%;
 	}
 	// 头部

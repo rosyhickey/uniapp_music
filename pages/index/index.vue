@@ -1,5 +1,5 @@
 <template>
-	<view class="box">
+	<view class="box" style="background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/719adcfe243791580098568077/kzRsoQFRClMA.jpg);">
 		<!-- 顶部 -->
 		<view class="top">
 			<!-- 顶左log -->
@@ -33,15 +33,19 @@
 		<!-- 主页音乐播放 -->
 		<view class="musiclove">
 			<view class="one" @click="mojito()">
-				<img src="static/musicimg/mojito.png" alt="mojito" width="101rpx">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png" 
+				alt="mojito" width="110rpx">
+				<!-- <img :src=imgPath alt="mojito" width="101rpx"> -->
 				<i class="musictitle">mojito</i>
 			</view>
 			<view class="two" @click="youkelili()">
-				<img src="static/musicimg/youkelili.png" alt="尤克里里" width="101rpx">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/6f7c1344243791580098498585/x8ViaGmKN7gA.png" 
+				alt="尤克里里" width="110rpx">
 				<i class="musictitle">尤克里里</i>
 			</view>
 			<view class="three" @click="yintian()">
-				<img src="static/musicimg/yintian.png" alt="阴天" width="101rpx">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/712a8cf1243791580098501680/R9HPe1iyQa8A.png" 
+				alt="阴天" width="110rpx">
 				<i class="musictitle">阴天</i>
 			</view>
 		</view>
@@ -53,7 +57,8 @@
 		
 		<!-- 底部二维码 -->
 		<view class="erweima">
-			<img src="static/erweima1.png" alt="erweima" width="100rpx">
+			<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/716545e5243791580098539959/MtSl3YbPjo0A.png" 
+			alt="erweima" width="100rpx">
 		</view>
 		
 		<!-- 一个跳转测试按钮 -->
@@ -74,8 +79,10 @@ import music from '@/js/music';
 			}
 		},
 		// computed: {
-		// 	time: function(){
-		// 		return this.date.getFullYear()
+		// 	imgPath(){
+		// 		return{
+		// 			imgPath:'static/musicimg/mojito.png'
+		// 		}
 		// 	}
 		// },
 		methods: {
@@ -98,7 +105,8 @@ import music from '@/js/music';
 		position: relative;
 		height: 800px;
 		background-color: #CCFF99;
-		background-image: url(/static/index1.jpg); background-size: 100%;
+		// background-image: url(/static/index1.jpg);
+		background-size: 100%;
 		// 顶部区域
 		.top{
 			height: 80rpx;

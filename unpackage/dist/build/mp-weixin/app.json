@@ -4,9 +4,11 @@
     "pages/list/list",
     "pages/about/about",
     "pages/user/user",
-    "pages/skippage/skippage"
+    "pages/skippage/skippage",
+    "components/details/details"
   ],
   "subPackages": [],
+  "lazyCodeLoading": "requiredComponents",
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

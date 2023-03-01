@@ -1,5 +1,5 @@
 <template>
-	<view class="box">
+	<view class="box" style="		background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/7172e610243791580098541450/lz8yH2Q7nOsA.jpg);">
 		<view class="top">
 			<uni-icons custom-prefix="custom-icon" type="heart-filled" size="30" color="skyblue"></uni-icons>
 			<text class="title">喜欢的歌手列表:</text>
@@ -176,7 +176,7 @@
 	.box{
 		width: 100%;
 		height: 800px;
-		background-image: url(/static/cat.jpg);
+		// background-image: url(/static/cat.jpg);
 		background-size: 100%;
 	}
 	.top{

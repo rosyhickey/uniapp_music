@@ -26,9 +26,8 @@
 /* 文章场景相关 */
 .box {
   position: relative;
-  height: 1140rpx;
+  height: 800px;
   background-color: #CCFF99;
-  background-image: url(/static/index1.jpg);
   background-size: 100%;
 }
 .box .top {
@@ -38,7 +37,7 @@
 }
 .box .top .log {
   margin-left: 20rpx;
-  width: 240rpx;
+  width: 260rpx;
   height: 50rpx;
   display: flex;
 }
@@ -63,7 +62,7 @@
   line-height: 50rpx;
 }
 .box .wenhou {
-  height: 200rpx;
+  height: 220rpx;
   position: relative;
 }
 .box .wenhou .wenhoubox {

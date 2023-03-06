@@ -8,7 +8,7 @@
 				:src="src"></image>
 			</view>
 			<view class="username">
-				<text>Jay Chou</text>
+				<text>{{name}}</text>
 			</view>
 		</view>
 		<view class="main">
@@ -26,6 +26,9 @@
 					</uni-drawer>
 				</view>
 
+				<view class="denglu">
+					<button class="exitbtn" @click="exit">退出登录</button>
+				</view>
 		</view>
 		
 		<view class="bottom">
@@ -35,13 +38,19 @@
 </template>
 
 <script>
+import { watch } from "vue";
 	export default {
 		data() {
 			return {
 				showRight: false,
 				showLeft: false,
 				src:'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/33ef290e243791580094105690/KbIX8fifQfsA.png'
+				,name:'用户'
 			}
+		},
+		onShow() {
+			this.name = localStorage.name,
+			this.src = localStorage.img
 		},
 		methods: {
 			confirm() {},
@@ -57,8 +66,21 @@
 			change(e, type) {
 				console.log((type === 'showLeft' ? '左窗口' : '右窗口') + (e ? '打开' : '关闭'));
 				this[type] = e
+			},
+			// 退出登录
+			exit(){
+				if(!localStorage||localStorage == ''){
+					alert('您还没有登录不能退出!')
+				}else{
+					uni.redirectTo({
+						url:'/pages/login/login'
+					})
+					uni.clearStorage()
+					
+				}
 			}
 		},
+
 		onNavigationBarButtonTap(e) {
 			if (this.showLeft) {
 				this.$refs.showLeft.close()
@@ -160,5 +182,16 @@
 		margin-top: 100px;
 		text-align: center;
 		left: 16%;
+	}
+	
+	.exitbtn{
+		width: 200rpx;
+		height: 100rpx;
+		font-size: 16px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background:rgba(255, 251, 240, 0.3);
+		border: 1px solid #cc4444;
 	}
 </style>

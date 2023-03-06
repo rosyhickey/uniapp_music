@@ -93,4 +93,14 @@
   text-align: center;
   left: 16%;
 }
+.exitbtn {
+  width: 200rpx;
+  height: 100rpx;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 251, 240, 0.3);
+  border: 1px solid #cc4444;
+}
 

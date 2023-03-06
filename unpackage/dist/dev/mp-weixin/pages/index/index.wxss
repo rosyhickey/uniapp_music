@@ -115,11 +115,12 @@
   align-items: center;
   justify-content: center;
   margin-left: 125rpx;
+  margin-top: 50rpx;
 }
 .box .wishbox .wishtext {
   text-align: center;
   line-height: 100rpx;
-  font-size: 50rpx;
+  font-size: 30rpx;
   font-family: cursive;
 }
 .box .erweima {
@@ -130,6 +131,7 @@
 .box .btnbox {
   width: 200rpx;
   margin-left: 275rpx;
+  margin-top: 200rpx;
 }
 .box .btnbox .btn {
   width: 200rpx;

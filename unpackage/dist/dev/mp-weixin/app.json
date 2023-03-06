@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/list/list",
     "pages/about/about",
@@ -7,7 +8,7 @@
     "pages/skippage/skippage",
     "components/details/details"
   ],
-  "subPackages": [],
+  "subpackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

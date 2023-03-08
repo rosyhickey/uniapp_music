@@ -22,7 +22,7 @@
 </template>
 
 <script>
-	// import request from '@/until/request.js'
+	import xuanran from '@/js/xuanran.js'
 	export default {
 		data() {
 			return {
@@ -39,14 +39,20 @@
 				}
 			}
 		},
+		onShow() {
+			// console.log(this.$data.form.username);
+			this.$data.form.username = '',
+			this.$data.form.password = ''
+		},
 		methods: {
 		login(){
 			uni.request({
-				url:'https://api.uomg.com/api/rand.qinghua',
+				// url:'https://api.uomg.com/api/rand.qinghua',
+				url:'http://121.40.79.162/api.txt',
 				method:'GET',
 				success: (res) => {
-					console.log(res.data.content);
-					if(res.data.code == 1){
+					console.log(res.data);
+					if(res.data.length){
 						if(this.form.username.length!=0){
 							uni.showToast({
 								title:"登陆成功!",
@@ -69,7 +75,8 @@
 						}
 						// 更改本地信息渲染到用户主页
 						uni.setStorageSync('name',this.form.username)
-						uni.setStorageSync("img",'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/33ecee26243791580094101425/2nSAl9ewfy8A.png')
+						// uni.setStorageSync("img",'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/714e1b68243791580098520112/mx1jQUy0dUoA.png')
+						xuanran.touxiang(this.form.username)
 						// sessionStorage.setItem("name", this.form.username)
 						// sessionStorage.setItem("img",'https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/33ecee26243791580094101425/2nSAl9ewfy8A.png')
 					}else{
@@ -80,7 +87,7 @@
 					// 刷新用户信息,重新获取用户信息界面,展示出来,把用户信息存储到本地
 				}
 			})
-
+			
 		}
 	},
 	}

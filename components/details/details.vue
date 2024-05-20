@@ -4,7 +4,7 @@
 			
 		</view>
 		<uni-section title="歌手信息" type="line" v-for="item in list">
-					<uni-card :title="item.text" extra="歌手" :thumbnail="item.url" @click="onClick">
+					<uni-card :title="item.text" extra="歌手" :thumbnail="item.url" @click="onClick(item)">
 						<text class="uni-body" v-text="item.song"></text>
 					</uni-card>
 				</uni-section>
@@ -36,7 +36,10 @@
 			// 	},
 			
 			onClick(e){
-							console.log(e)
+							console.log(e.text);
+							uni.navigateTo({
+								url:'/components/search/search?key='+e.text
+							})
 						},
 						actionsClick(text){
 							uni.showToast({

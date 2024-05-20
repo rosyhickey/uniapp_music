@@ -65,7 +65,11 @@
   top: 10rpx;
   border-radius: 15rpx;
 }
-.main .musiclist .one, .main .musiclist .two, .main .musiclist .three, .main .musiclist .four {
+.main .musiclist .one,
+.main .musiclist .two,
+.main .musiclist .three,
+.main .musiclist .four,
+.main .musiclist .songs-list {
   height: 125rpx;
   border: 2rpx solid #000;
   border-radius: 30rpx;

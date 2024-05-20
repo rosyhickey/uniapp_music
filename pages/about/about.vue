@@ -29,16 +29,6 @@
 							</uni-grid-item>
 						</uni-grid>
 					</swiper-item>
-					<swiper-item>
-						<uni-grid :column="3" :highlight="true" @change="change">
-							<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
-								<view class="grid-item-box">
-									<image :src="item.url" class="image" mode="aspectFill" />
-									<text class="text">{{ item.text }}</text>
-								</view>
-							</uni-grid-item>
-						</uni-grid>
-					</swiper-item>
 				</swiper>
 		</view>
 		<view class="addbox">
@@ -77,7 +67,7 @@
 					buttonColor: '#007AFF',
 					iconColor: '#fff'
 				},
-				is_color_type: false,
+					is_color_type: false,
 					content: [{
 							iconPath: '/static/musicicon/add-circle.png',
 							selectedIconPath: '/static/selected/add-circle.png',
@@ -138,21 +128,29 @@
 			trigger(e) {
 				console.log(e)
 				this.content[e.index].active = !e.item.active
-				uni.showModal({
-					title: '提示',
-					content: `您${this.content[e.index].active ? '选中了' : '取消了'}${e.item.text}`,
-					success: function(res) {
-						if (res.confirm) {
-							console.log('用户点击确定')
-							uni.showToast({
-								title: `操作成功!`,
-								icon: 'success'
-							})
-						} else if (res.cancel) {
-							console.log('用户点击取消')
+				if(e.index == 1){
+					uni.showModal({
+						title:'添加我的微信:',
+						content:'vx:rosyhickey',
+					})
+				}else{
+					uni.showModal({
+						title: '提示',
+						content: `您${this.content[e.index].active ? '选中了' : '取消了'}${e.item.text}`,
+						success: function(res) {
+							if (res.confirm) {
+								console.log('用户点击确定')
+								uni.showToast({
+									title: `操作成功!`,
+									icon: 'success'
+								})
+							} else if (res.cancel) {
+								console.log('用户点击取消')
+							}
 						}
-					}
-				})
+					})
+				}
+
 			},
 			// fabClick() {
 			// 	uni.showToast({

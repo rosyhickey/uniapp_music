@@ -26,7 +26,7 @@
 /* 文章场景相关 */
 .box {
   position: relative;
-  height: 800px;
+  height: 700px;
   background-color: #CCFF99;
   background-size: 100%;
 }

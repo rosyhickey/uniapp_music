@@ -1,96 +1,132 @@
 <template>
-	<view class="body" style="background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/32178170243791580094073238/EWMBFISS46gA.jpg);">
+	<view class="body"
+		style="background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/32178170243791580094073238/EWMBFISS46gA.jpg);">
 		<view class="top">
 			<!-- 搜索框 -->
-			<uni-search-bar
-				@confirm="search" 
-				:focus="false"
-				v-model="searchValue" 
-				@blur="blur" 
-				@focus="focus" 
-				@input="input"
-				@cancel="cancel" 
-				@clear="clear"
-				clearButton="auto"
-				cancelButton="none">
+			<uni-search-bar @confirm="search" :focus="false" v-model="searchValue" @blur="blur" @focus="focus"
+				@input="input" @cancel="cancel" @clear="clear" clearButton="auto" cancelButton="none">
 			</uni-search-bar>
 			<!-- 标签栏 -->
 			<view>
 				<view class="biaoqian-body">
 					<view class="tag-view">
-						<uni-tag text="周杰伦" type="primary" @click="mojito()"/>
+						<uni-tag text="周杰伦" type="primary" @click="mojito()" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="尤克里里" type="success" @click="youkelili()"/>
+						<uni-tag text="尤克里里" type="success" @click="youkelili()" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="莫文蔚" type="warning" @click="yintian()"/>
+						<uni-tag text="莫文蔚" type="warning" @click="yintian()" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="English" type="error" @click="nobuy()"/>
+						<uni-tag text="English" type="error" @click="nobuy()" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="日语" @click="nobuy()"/>
+						<uni-tag text="日语" @click="nobuy()" />
 					</view>
 				</view>
 			</view>
 			<view class="fengexian">
-					<hr> 
+				<hr>
 			</view>
 		</view>
-		
+
 		<!-- 歌曲区域 -->
 		<view class="main">
 			<view class="musiclist">
-				<view class="one" @click="mojito()">
+				<!-- <view class="one" @click="mojito()">
 					<uni-icons type="headphones" size="30"></uni-icons>
 					<text>周杰伦-Mojito</text>
-				</view>
-				<view class="two" @click="youkelili()">
+				</view> -->
+				<view class="songs-list" v-for="(sItem,index) in paginatedSongs" :key="index" @click="start(sItem)">
 					<uni-icons type="headphones" size="30"></uni-icons>
-					<text>尤克里里-椿</text>
-				</view>
-				<view class="three" @click="yintian()">
-					<uni-icons type="headphones" size="30"></uni-icons>
-					<text>莫文蔚-阴天</text>
-				</view>
-				<view class="four" @click="haojiubujian()">
-					<uni-icons type="headphones" size="30"></uni-icons>
-					<text>陈奕迅-好久不见</text>
+					<text>{{sItem.title}}</text>
 				</view>
 			</view>
 		</view>
-		
+
 		<!-- 底部分页器 -->
 		<view class="bottom">
-			<uni-pagination :total="4" title="标题文字" />
+			<uni-pagination :total="totalPages" :pageSize="pageSize" :current="currentPage"
+				@change="onPageChange" title="标题文字" />
 		</view>
 	</view>
 
 </template>
 
 <script>
-	import music from "@/js/music.js"
+	import music from "@/utils/music.js"
+	import songsList from "@/store/songs.js"
+	import startSong from "../../utils/startSong"
+	import store from "@/store/index.js"
+	
 	export default {
 		data() {
 			return {
 				searchValue: '',
 				type: "default",
 				inverted: false,
+				currentPage: 1,
+				total: '',
+				pageSize: 4,
+				songsList: songsList.songsList,
+				// zuijinSongs:[]
 			}
 		},
+		onShow() {
+			console.log('原始列表',songsList.songsList);
+		},
+		// 计算属性
+		computed: {
+			// Calculate total pages based on the number of items and pageSize
+			totalPages() {
+				// return Math.ceil(this.songsList.length / this.pageSize);
+				return this.songsList.length
+			},
+			// Paginate the songs list based on currentPage and pageSize
+			paginatedSongs() {
+				let startIndex = Number((this.currentPage - 1) * this.pageSize);
+				let endIndex = startIndex + this.pageSize;
+				return this.songsList.slice(startIndex, endIndex);
+				console.log('分割后的列表',this.songsList);
+			},
+			
+			// 最近播放
+			zuijinSongs(){
+				// return this.$store.state.zuijinSongs
+			}
+
+		},
+		// 方法
 		methods: {
-			nobuy(){
+			// 分页
+			onPageChange(page) {
+				this.currentPage = page.current;
+			},
+			nobuy() {
 				uni.showToast({
 					title: '该歌手歌曲尚未收录!',
 					icon: 'none',
 				})
 			},
+			start(e){
+				console.log('所点击的歌曲对象',e);
+				startSong.start(e.sid);
+				console.log('获取store',store.state.zuijinSongs);
+				store.state.zuijinSongs.unshift(e);
+				console.log('添加后的state数据',store.state.zuijinSongs);
+			},
+			
+			// 搜索相关方法
 			search(res) {
-				uni.showToast({
-					title: '搜索：' + res.value,
-					icon: 'none',
-				})
+				// uni.showToast({
+				// 	title: '搜索：' + res.value,
+				// 	icon: 'none',
+				// }),
+				uni.navigateTo({
+					url:'/components/search/search?key='+res.value
+				}),
+				console.log('搜索了',res.value)
 			},
 			input(res) {
 				console.log('----input:', res)
@@ -102,16 +138,16 @@
 				})
 			},
 			blur(res) {
-				// uni.showToast({
-				// 	title: 'blur事件，输入值为：' + res.value,
-				// 	icon: 'none'
-				// })
+				uni.showToast({
+					title: 'blur事件，输入值为：' + res.value,
+					icon: 'none'
+				})
 			},
 			focus(e) {
-				// uni.showToast({
-				// 	title: 'focus事件，输出值为：' + e.value,
-				// 	icon: 'none'
-				// })
+				uni.showToast({
+					title: 'focus事件，输出值为：' + e.value,
+					icon: 'none'
+				})
 			},
 			cancel(res) {
 				uni.showToast({
@@ -120,111 +156,105 @@
 				})
 			},
 			setType() {
-					let types = ["default", "primary", "success", "warning", "error"];
-					let index = types.indexOf(this.type);
-					types.splice(index, 1);
-					let randomIndex = Math.floor(Math.random() * 4);
-					this.type = types[randomIndex];
-				},
+				let types = ["default", "primary", "success", "warning", "error"];
+				let index = types.indexOf(this.type);
+				types.splice(index, 1);
+				let randomIndex = Math.floor(Math.random() * 4);
+				this.type = types[randomIndex];
+			},
 			setInverted() {
 				this.inverted = !this.inverted;
 			},
 			onBackPress() {
-			// #ifdef APP-PLUS
-			plus.key.hideSoftKeybord();
-			// #endif
-			},
-			mojito(){
-				music.mojito()
-			},
-			youkelili(){
-				music.youkelili()
-			},
-			yintian(){
-				music.yintian()
-			},
-			haojiubujian(){
-				uni.showToast({
-					title:"没钱买!",
-					icon:"error"
-				})
+				// #ifdef APP-PLUS
+				plus.key.hideSoftKeybord();
+				// #endif
 			}
-		},
-		
+		}
+
 	}
 </script>
 
 
 <style lang="scss">
-	.body{
+	.body {
 		height: 800px;
 		// background-image: url(/static/flower.jpg);
 		background-size: 100%;
 		position: relative;
 	}
+
 	// 头部区域
-	.top{
+	.top {
 		.search-result {
 			padding-top: 10px;
 			padding-bottom: 20px;
 			text-align: center;
 		}
-		
+
 		.search-result-text {
 			text-align: center;
 			font-size: 14px;
-			color:#666;
+			color: #666;
 		}
-		
+
 		// .example-body {
 		// 	/* #ifndef APP-NVUE */
 		// 	display: block;
 		// 	/* #endif */
 		// 	padding: 0px;
 		// }
-		
+
 		.uni-mt-10 {
 			margin-top: 10px;
 		}
-		.biaoqian-body{
+
+		.biaoqian-body {
 			display: flex;
 			justify-content: space-around;
 		}
-		.fengexian{
-			width:66%;
+
+		.fengexian {
+			width: 66%;
 			margin: 30rpx auto;
 		}
 	}
 
-	
+
 	//主体区域
-	.main{
+	.main {
 		width: 100%;
 		height: 300px;
-		background-color: rgb(221,217,216);
+		background-color: rgb(221, 217, 216);
 		opacity: 0.5;
 		position: relative;
-		.musiclist{
+
+		.musiclist {
 			width: 95%;
 			// height: 850rpx;
-			 background-color: rgb(234,224,212);
-			 position: absolute;
-			 left: 2.5%;
-			 top: 10rpx;
-			 border-radius: 15rpx;
-			 .one,.two,.three,.four{
-				 height: 125rpx;
-				 border: 2rpx solid #000;
-				 border-radius: 30rpx;
-				 margin-bottom: 10rpx;
-				 text-align: center;
-				 line-height: 125rpx;
-			 }
+			background-color: rgb(234, 224, 212);
+			position: absolute;
+			left: 2.5%;
+			top: 10rpx;
+			border-radius: 15rpx;
+
+			.one,
+			.two,
+			.three,
+			.four,
+			.songs-list {
+				height: 125rpx;
+				border: 2rpx solid #000;
+				border-radius: 30rpx;
+				margin-bottom: 10rpx;
+				text-align: center;
+				line-height: 125rpx;
+			}
 		}
 	}
-	
+
 	//底部分页器
-	.bottom{
+	.bottom {
 		width: 100%;
 		height: 70rpx;
 		position: absolute;

@@ -6,9 +6,14 @@
     "pages/about/about",
     "pages/user/user",
     "pages/skippage/skippage",
-    "components/details/details"
+    "components/details/details",
+    "components/shoucang/shoucang",
+    "components/xihuan/xihuan",
+    "components/zuijin/zuijin",
+    "components/yigou/yigou",
+    "components/search/search"
   ],
-  "subpackages": [],
+  "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",

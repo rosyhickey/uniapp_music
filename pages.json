@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-		    "path" : "pages/login/login",
+		    "path" : "pages/login/login2",
 		    "style" :                                                                                    
 		    {
 		        "navigationBarTitleText": "",
@@ -65,6 +65,48 @@
                 "enablePullDownRefresh": false
             }
             
+        },
+        {
+        	"path" : "components/shoucang/shoucang",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "收藏"
+        	}
+        },
+        {
+        	"path" : "components/xihuan/xihuan",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "喜欢"
+        	}
+        },
+        {
+        	"path" : "components/zuijin/zuijin",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "最近"
+        	}
+        },
+        {
+        	"path" : "components/yigou/yigou",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "已购"
+        	}
+        },
+        {
+        	"path" : "components/search/search",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "搜索页"
+        	}
+        },
+        {
+        	"path" : "hooks/useList/useList",
+        	"style" : 
+        	{
+        		"navigationBarTitleText" : "useList"
+        	}
         }
         
     ],

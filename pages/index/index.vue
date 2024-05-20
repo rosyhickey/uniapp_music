@@ -6,7 +6,7 @@
 			<view class="log">
 				<!-- <img src="/static/musicicon/erji.png" alt="log" width="25rpx"> -->
 				<uni-icons custom-prefix="custom-icon" type="headphones" size="25" color="rgb(105,104,58)"></uni-icons>
-				<span class="logtext">RosyHickey的主页</span>
+				<span class="logtext">RosyHickey</span>
 			</view>
 			<!-- 顶右日期 -->
 			<view class="date">
@@ -56,11 +56,7 @@
 			<span class="wishtext">{{wishtext}}</span>
 		</view>
 		
-		<!-- 底部二维码 -->
-		<view class="erweima">
-			<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/716545e5243791580098539959/MtSl3YbPjo0A.png" 
-			alt="erweima" width="100rpx">
-		</view>
+
 		
 		<!-- 一个跳转测试按钮 -->
 		<navigator url="../skippage/skippage" class="btnbox">
@@ -70,7 +66,8 @@
 </template>
 
 <script>
-import music from '@/js/music';
+import music from '@/utils/music';
+import store from '@/store/index.js'
 	export default {
 		data() {
 			return {
@@ -87,6 +84,9 @@ import music from '@/js/music';
 		// 		}
 		// 	}
 		// },
+		onShow() {
+			this.name = store.state.username
+		},
 		onLoad() {
 			uni.request({
 				url:"https://api.uomg.com/api/rand.qinghua",
@@ -96,7 +96,6 @@ import music from '@/js/music';
 						title: '点击情话刷新',
 						duration: 1500
 					});
-
 				}
 			})
 		},
@@ -117,7 +116,8 @@ import music from '@/js/music';
 						console.log(res.data.content);
 						this.wishtext = res.data.content
 					}
-				})
+				}),
+				console.log(this.date);
 			}
 		},
 	}
@@ -126,7 +126,7 @@ import music from '@/js/music';
 <style lang="scss">
 	.box{
 		position: relative;
-		height: 800px;
+		height: 700px;
 		background-color: #CCFF99;
 		// background-image: url(/static/index1.jpg);
 		background-size: 100%;

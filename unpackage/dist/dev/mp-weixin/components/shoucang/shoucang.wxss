@@ -1,0 +1,19 @@
+
+.container {
+  padding: 20px;
+}
+.item {
+  margin-bottom: 10px;
+}
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+

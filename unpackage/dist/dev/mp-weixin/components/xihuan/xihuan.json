@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "喜欢",
-  "usingComponents": {}
+  "usingComponents": {
+    "use-list": "/hooks/useList/useList"
+  }
 }

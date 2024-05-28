@@ -2,7 +2,7 @@
 	<view class="body" style="height:1100rpx">
 		<view class="main">
 			<view class="musiclist">
-				<view class="songs-list" v-for="(sItem,index) in paginatedSongs" :key="index" @click="start(sItem.sid)">
+				<view class="songs-list" v-for="(sItem,index) in paginatedSongs" :key="index" @click="start(sItem)">
 					<uni-icons type="headphones" size="30"></uni-icons>
 					<text>{{sItem.title}}</text>
 				</view>
@@ -72,7 +72,13 @@
 				})
 			},
 			start(e){
-				startSong.start(e)
+				startSong.start(e.sid)
+				this.$store.state.zuijinSongs.unshift(e);
+				// console.log('添加后的state数据',this.$store.state.zuijinSongs);
+				// 跳转当前播放歌曲
+					uni.navigateTo({
+						url: `/pages/songDetail/songDetail?sid=${e.sid}&p=${e.p}&title=${e.title}`
+					})
 			},
 			
 			setInverted() {

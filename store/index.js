@@ -7,7 +7,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({  
   state: {  
+	isLogin:false,
 	zuijinSongs:[],
+	xihuanSongs:[],
+	shoucangSongs:[],
 	musicstate:false,
 	username:'',
 	password:'',
@@ -20,6 +23,8 @@ export default new Vuex.Store({
  
   },  
   getters: {  
- 
+	isLogin(){
+		return state.isLogin
+	}
   }  
 })

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "已购",
-  "usingComponents": {}
+  "usingComponents": {
+    "use-list": "/hooks/useList/useList"
+  }
 }

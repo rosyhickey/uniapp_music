@@ -112,9 +112,13 @@
 			start(e){
 				console.log('所点击的歌曲对象',e);
 				startSong.start(e.sid);
-				console.log('获取store',store.state.zuijinSongs);
-				store.state.zuijinSongs.unshift(e);
-				console.log('添加后的state数据',store.state.zuijinSongs);
+				// console.log('获取store',this.$store.state.zuijinSongs);
+				this.$store.state.zuijinSongs.unshift(e);
+				// console.log('添加后的state数据',this.$store.state.zuijinSongs);
+				// 跳转当前播放歌曲
+					uni.navigateTo({
+						url: `../songDetail/songDetail?sid=${e.sid}&p=${e.p}&title=${e.title}`
+					})
 			},
 			
 			// 搜索相关方法
@@ -124,7 +128,7 @@
 				// 	icon: 'none',
 				// }),
 				uni.navigateTo({
-					url:'/components/search/search?key='+res.value
+					url:'/pages/search/search?key='+res.value
 				}),
 				console.log('搜索了',res.value)
 			},

@@ -14,14 +14,20 @@ var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/inte
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 __webpack_require__(/*! uni-pages */ 26);
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 27));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 34));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./store/index.js */ 33));
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 25));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 // @ts-ignore
 wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
+_vue.default.use(_vuex.default);
+// Vue.prototype.$store = store
 _vue.default.config.productionTip = false;
 _App.default.mpType = 'app';
-var app = new _vue.default(_objectSpread({}, _App.default));
+var app = new _vue.default(_objectSpread(_objectSpread({}, _App.default), {}, {
+  store: _index.default
+}));
 createApp(app).$mount();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["createApp"]))
 
@@ -91,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(uni) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -105,7 +111,23 @@ exports.default = void 0;
 var _default = {
   onLaunch: function onLaunch() {
     console.log('App Launch');
+    // 判断是否登录
+    // const isLogin = this.$store.state.isLogin; // 或者使用 getter/action 来获取  
+
+    var isLogin1 = this.$store.state.isLogin;
+    if (isLogin1) {
+      // 如果已登录，跳转到应用的首页  
+      uni.redirectTo({
+        url: '/pages/index/index' // 替换为你的首页路径  
+      });
+    } else {
+      // 如果未登录，跳转到登录页  
+      uni.redirectTo({
+        url: '/pages/login/login2' // 替换为你的登录页路径  
+      });
+    }
   },
+
   onShow: function onShow() {
     console.log('App Show');
   },
@@ -114,6 +136,7 @@ var _default = {
   }
 };
 exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

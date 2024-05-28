@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/login/login",
+    "pages/login/login2",
     "pages/index/index",
     "pages/list/list",
     "pages/about/about",
@@ -11,7 +11,8 @@
     "components/xihuan/xihuan",
     "components/zuijin/zuijin",
     "components/yigou/yigou",
-    "components/search/search"
+    "components/search/search",
+    "hooks/useList/useList"
   ],
   "subPackages": [],
   "window": {

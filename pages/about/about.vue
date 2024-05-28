@@ -8,7 +8,7 @@
 				<!-- 因为swiper特性的关系，请指定swiper的高度 ，swiper的高度并不会被内容撑开-->
 				<swiper class="swiper" :indicator-dots="true">
 					<swiper-item>
-						<navigator url="/components/details/details">
+						<navigator url="/pages/details/details">
 							<uni-grid :column="3" :highlight="true" @change="change">
 								<uni-grid-item v-for="(item, index) in list" :index="index" :key="index">
 									<view class="grid-item-box">

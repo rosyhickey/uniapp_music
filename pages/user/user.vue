@@ -122,10 +122,18 @@
 		onShow() {
 			// this.name = localStorage.name,
 			// this.src = localStorage.img
-			this.name = store.state.username;
+			// this.name = store.state.username;
+			try {
+				this.name = uni.getStorageSync('name');
+				if (this.name) {
+					console.log(this.name);
+				}
+			} catch (e) {
+				// error
+			}
 			// this.src = store.state.img
-			console.log(this.src);
-			console.log('state',store.state.img);
+			// console.log(this.src);
+			// console.log('state',this.$store.state.img);
 		},
 		methods: {
 			confirm() {},
@@ -148,6 +156,14 @@
 					this.value = val
 					this.name = val
 					store.state.username = val
+					// uni.setStorage('name',val)
+					uni.setStorage({
+						key: 'name',
+						data: val,
+						success: function () {
+							console.log('success');
+						}
+					});
 					// store.state.img = this.src
 					// localStorage.name = val
 					// 关闭窗口后，恢复默认内容
@@ -159,22 +175,22 @@
 			// 跳转方法
 			shoucang() {
 				uni.navigateTo({
-					url: '/components/shoucang/shoucang'
+					url: '/pages/shoucang/shoucang'
 				})
 			},
 			xihuan() {
 				uni.navigateTo({
-					url: '/components/xihuan/xihuan'
+					url: '/pages/xihuan/xihuan'
 				})
 			},
 			zuijin() {
 				uni.navigateTo({
-					url: '/components/zuijin/zuijin'
+					url: '/pages/zuijin/zuijin'
 				})
 			},
 			yigou() {
 				uni.navigateTo({
-					url: '/components/yigou/yigou'
+					url: '/pages/yigou/yigou'
 				})
 			},
 			about() {
@@ -184,10 +200,14 @@
 			},
 			// 退出登录
 			exit() {
+				// console.log(this.$store.state.isLogin);
 				uni.redirectTo({
 					url: '/pages/login/login2'
 				})
-				uni.clearStorage();
+				// this.$store.state.isLogin = false,
+				sessionStorage.setItem('isLogin',false);
+			// sessionStorage.removeItem('isLogin')
+				// uni.clearStorage();
 			}
 		},
 

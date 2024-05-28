@@ -1,1 +1,1 @@
-<view>最近播放列表</view>
+<view><view class="_h3">最近播放</view><view class="mainbox"><use-list vue-id="4fbcd062-1" songList="{{zuijin}}" bind:__l="__l"></use-list></view></view>

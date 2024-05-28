@@ -1,1 +1,1 @@
-<view>已购音乐列表</view>
+<view><view class="_h3">已购列表</view><use-list vue-id="724f3bf4-1" songList="{{songList}}" bind:__l="__l"></use-list></view>

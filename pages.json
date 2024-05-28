@@ -58,7 +58,7 @@
             
         }
         ,{
-            "path" : "components/details/details",
+            "path" : "pages/details/details",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "歌手列表信息",
@@ -67,35 +67,35 @@
             
         },
         {
-        	"path" : "components/shoucang/shoucang",
+        	"path" : "pages/shoucang/shoucang",
         	"style" : 
         	{
         		"navigationBarTitleText" : "收藏"
         	}
         },
         {
-        	"path" : "components/xihuan/xihuan",
+        	"path" : "pages/xihuan/xihuan",
         	"style" : 
         	{
         		"navigationBarTitleText" : "喜欢"
         	}
         },
         {
-        	"path" : "components/zuijin/zuijin",
+        	"path" : "pages/zuijin/zuijin",
         	"style" : 
         	{
         		"navigationBarTitleText" : "最近"
         	}
         },
         {
-        	"path" : "components/yigou/yigou",
+        	"path" : "pages/yigou/yigou",
         	"style" : 
         	{
         		"navigationBarTitleText" : "已购"
         	}
         },
         {
-        	"path" : "components/search/search",
+        	"path" : "pages/search/search",
         	"style" : 
         	{
         		"navigationBarTitleText" : "搜索页"
@@ -107,7 +107,21 @@
         	{
         		"navigationBarTitleText" : "useList"
         	}
-        }
+        },
+		{
+			"path" : "pages/songDetail/songDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "正在播放"
+			}
+		},
+		{
+			"path" : "pages/testcode/testcode",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		}
         
     ],
 	"globalStyle": {
@@ -117,6 +131,7 @@
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {},
+	"lazyCodeLoading": "requiredComponents",
 	"tabBar": {
 		"color": "#000000",
 		"selectedColor": "#ff0000",

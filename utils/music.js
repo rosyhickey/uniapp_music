@@ -1,10 +1,11 @@
 // 播放音乐文件
 // 在外面创建  不然会有多个音乐同时播放
 // import {playOrPauseAudio} from '@/utils/commonMusic.js'
-
 const innerAudioContext = uni.createInnerAudioContext();
 		innerAudioContext.autoplay = false;
+		innerAudioContext.loop = true;
 export default {
+	innerAudioContext,
 	mojito() {
 		this.musicstate = !this.musicstate;
 		console.log('当前状态',this.musicstate);

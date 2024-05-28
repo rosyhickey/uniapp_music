@@ -1,5 +1,6 @@
 <template>
-	<view class="box" style="background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/719adcfe243791580098568077/kzRsoQFRClMA.jpg);">
+	<view class="box"
+		style="background-image: url(https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/719adcfe243791580098568077/kzRsoQFRClMA.jpg);">
 		<!-- 顶部 -->
 		<view class="top">
 			<!-- 顶左log -->
@@ -20,44 +21,48 @@
 		<!-- 问候语区域 -->
 		<view class="wenhou">
 			<view class="wenhoubox">
-				<span class="wenhoutext">早安! {{name}}</span>
+				<span class="wenhoutext" @click="toSongDetail">早安! {{name}}</span>
 			</view>
 		</view>
 		<!-- 分割线 -->
 		<view class="fenge">
-			<hr/>
+			<hr />
 		</view>
-		
-		
-		
+
+
+
 		<!-- 主页音乐播放 -->
 		<view class="musiclove">
-			<view class="one" @click="mojito()">
-				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png" 
-				alt="mojito" width="110rpx">
-				<!-- <img :src=imgPath alt="mojito" width="101rpx"> -->
+			<view class="one" v-for="(sItem,index) in firstSongs" :key="index" @click="start(sItem)">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png"
+					alt="mojito" width="110rpx">
+					<i class="musictitle">{{sItem.title}}</i>
+			</view>
+<!-- 			<view class="one" @click="mojito()">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png"
+					alt="mojito" width="110rpx">
 				<i class="musictitle">mojito</i>
 			</view>
 			<view class="two" @click="youkelili()">
-				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/6f7c1344243791580098498585/x8ViaGmKN7gA.png" 
-				alt="尤克里里" width="110rpx">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/6f7c1344243791580098498585/x8ViaGmKN7gA.png"
+					alt="尤克里里" width="110rpx">
 				<i class="musictitle">尤克里里</i>
 			</view>
 			<view class="three" @click="yintian()">
-				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/712a8cf1243791580098501680/R9HPe1iyQa8A.png" 
-				alt="阴天" width="110rpx">
+				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/712a8cf1243791580098501680/R9HPe1iyQa8A.png"
+					alt="阴天" width="110rpx">
 				<i class="musictitle">阴天</i>
-			</view>
+			</view> -->
 		</view>
-		
+
 		<!-- 随机祝福语 -->
 		<view class="wishbox" @click="change">
 			<!-- <span class="wishtext">"Bless You!"</span> -->
 			<span class="wishtext">{{wishtext}}</span>
 		</view>
-		
 
-		
+
+
 		<!-- 一个跳转测试按钮 -->
 		<navigator url="../skippage/skippage" class="btnbox">
 			<button class="btn">打卡</button>
@@ -66,30 +71,41 @@
 </template>
 
 <script>
-import music from '@/utils/music';
-import store from '@/store/index.js'
+	import music from '@/utils/music';
+	import store from '@/store/index.js'
+	import startSong from '../../utils/startSong';
+	import songsList from "@/store/songs.js"
 	export default {
 		data() {
 			return {
 				name: 'RosyHickey',
-				musicstate:false,
+				musicstate: false,
 				date: Date.now(),
-				wishtext:''
+				wishtext: '',
+				songsList: songsList.songsList,
 			}
 		},
-		// computed: {
-		// 	imgPath(){
-		// 		return{
-		// 			imgPath:'static/musicimg/mojito.png'
-		// 		}
-		// 	}
-		// },
+		computed:{
+			firstSongs(){
+				return this.songsList.slice(0,3)
+			}
+		},
 		onShow() {
-			this.name = store.state.username
+			// console.log(store.state.username);
+			// this.name = store.state.username
+			try {
+				this.name = uni.getStorageSync('name');
+				if (this.name) {
+					console.log(this.name);
+				}
+			} catch (e) {
+				// error
+			}
+			// console.log('登陆状态',sessionStorage.isLogin);
 		},
 		onLoad() {
 			uni.request({
-				url:"https://api.uomg.com/api/rand.qinghua",
+				url: "https://api.uomg.com/api/rand.qinghua",
 				success: (res) => {
 					this.wishtext = res.data.content
 					uni.showToast({
@@ -100,67 +116,76 @@ import store from '@/store/index.js'
 			})
 		},
 		methods: {
-			mojito() {
-				music.mojito()
+			start(e){
+				console.log('所点击的歌曲对象',e);
+				startSong.start(e.sid);
+				// console.log('获取store',this.$store.state.zuijinSongs);
+				this.$store.state.zuijinSongs.unshift(e);
+				// console.log('添加后的state数据',this.$store.state.zuijinSongs);
+				// 跳转当前播放歌曲
+					uni.navigateTo({
+						url: `/pages/songDetail/songDetail?sid=${e.sid}&p=${e.p}&title=${e.title}`
+					})
 			},
-			youkelili() {
-				music.youkelili()
-			},
-			yintian() {
-				music.yintian()
-			},
-			change(){
+			change() {
+				// console.log('state:',this.$store.state.isLogin);
+				// console.log('sessionstorage:',sessionStorage.isLogin);
 				uni.request({
-					url:"https://api.uomg.com/api/rand.qinghua",
-					success: (res) => {
-						console.log(res.data.content);
-						this.wishtext = res.data.content
-					}
-				}),
-				console.log(this.date);
+						url: "https://api.uomg.com/api/rand.qinghua",
+						success: (res) => {
+							console.log(res.data.content);
+							this.wishtext = res.data.content
+						}
+					}),
+					console.log(this.date);
 			}
 		},
 	}
 </script>
 
 <style lang="scss">
-	.box{
+	.box {
 		position: relative;
 		height: 700px;
 		background-color: #CCFF99;
 		// background-image: url(/static/index1.jpg);
 		background-size: 100%;
+
 		// 顶部区域
-		.top{
+		.top {
 			height: 80rpx;
 			display: flex;
 			justify-content: space-between;
+
 			// position: relative;
 			// background-color: #66CCCC;
-			.log{
+			.log {
 				// position: absolute;
 				margin-left: 20rpx;
 				width: 260rpx;
 				height: 50rpx;
 				// background-color: pink;
 				display: flex;
-				.logtext{
+
+				.logtext {
 					font-size: 25rpx;
 					padding-left: 8rpx;
 					color: #000000;
 					text-align: center;
 					line-height: 50rpx;
 				}
-				
+
 			}
+
 			// 日期
-			.date{
+			.date {
 				width: 240rpx;
 				height: 50rpx;
 				margin-right: 20rpx;
 				// background-color: #CC66FF;
 				display: flex;
-				.logdate{
+
+				.logdate {
 					font-size: 25rpx;
 					padding-left: 8rpx;
 					color: #000000;
@@ -169,14 +194,16 @@ import store from '@/store/index.js'
 				}
 			}
 		}
+
 		// 问候语区域
-		.wenhou{
+		.wenhou {
 			height: 220rpx;
 			// background-color: #00CC33;
 			position: relative;
-			.wenhoubox{
+
+			.wenhoubox {
 				position: absolute;
-				top:50rpx ;
+				top: 50rpx;
 				width: 500rpx;
 				height: 100rpx;
 				display: flex;
@@ -186,16 +213,18 @@ import store from '@/store/index.js'
 				margin-bottom: 25rpx;
 				border: 2rpx solid #000000;
 				border-radius: 50rpx;
-				.wenhoutext{
+
+				.wenhoutext {
 					text-align: center;
 					line-height: 100rpx;
 					font-size: 50rpx;
-					font-family: cursive;  //草书
-					}
+					font-family: cursive; //草书
 				}
+			}
 		}
+
 		// 音乐播放区域
-		.musiclove{
+		.musiclove {
 			position: relative;
 			height: 200rpx;
 			// background-color: #FF66FF;
@@ -203,25 +232,35 @@ import store from '@/store/index.js'
 			display: flex;
 			justify-content: space-between;
 			padding: 0 25rpx 40rpx 25rpx;
-			.one,.two,.three{
+
+			.one,
+			.two,
+			.three {
 				background-color: skyblue;
 				width: 200rpx;
 				height: 200rpx;
 				border-radius: 100rpx;
-				overflow:hidden;
+				overflow: hidden;
 				display: flex;
 				justify-content: center;
-				.musictitle{
+
+				.musictitle {
 					position: absolute;
 					height: 10rpx;
 					bottom: 25rpx;
-					text-decoration:underline;
+					text-decoration: underline;
 					// padding-left: 50rpx;
+				}
+
+				img {
+					width: 100%;
+					height: 100%;
 				}
 			}
 		}
+
 		// 祝福语区域
-		.wishbox{
+		.wishbox {
 			padding-top: 50rpx;
 			width: 500rpx;
 			height: 100rpx;
@@ -231,37 +270,42 @@ import store from '@/store/index.js'
 			justify-content: center;
 			margin-left: 125rpx;
 			margin-top: 50rpx;
-			.wishtext{
+
+			.wishtext {
 				text-align: center;
 				line-height: 100rpx;
 				font-size: 30rpx;
-				font-family: cursive;  //草书
+				font-family: cursive; //草书
 			}
 		}
+
 		// 二维码区域
-		.erweima{
+		.erweima {
 			position: absolute;
 			left: 0rpx;
-			bottom:0rpx;
+			bottom: 0rpx;
 		}
+
 		//跳转测试
-		.btnbox{
+		.btnbox {
 			// background-color: skyblue;
 			width: 200rpx;
 			margin-left: 275rpx;
 			margin-top: 200rpx;
-			.btn{
+
+			.btn {
 				width: 200rpx;
-				border-radius: 10px;	
+				border-radius: 10px;
 				border: 1px solid black;
 				text-align: center;
-				background:rgba(255, 251, 240, 0.3); 
+				background: rgba(255, 251, 240, 0.3);
 			}
 		}
-		.fenge{
+
+		.fenge {
 			width: 500rpx;
 			margin: 0 auto;
 		}
-		
+
 	}
 </style>

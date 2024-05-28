@@ -1,1 +1,1 @@
-<view>喜欢列表</view>
+<view><view class="_h3">喜欢列表</view><use-list vue-id="eee808bc-1" songList="{{songList}}" bind:__l="__l"></use-list></view>

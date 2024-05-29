@@ -7,7 +7,7 @@
 		</view>
 
 		<!-- CDimg -->
-		<view class="cdImg">
+		<view class="cdImg" @click="totestcode">
 			<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/2c6e57351253642697282010006/YsgMTOAlrMIA.png"
 				alt="mojito" width="110rpx" id="cd" class="xuanzhuanimg">
 		</view>
@@ -30,12 +30,12 @@
 		<!-- 播放键 -->
 		<view class="pauseBtn">
 			<!-- <button @click="pauseMusic">{{btnText}}</button> -->
-			<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/dbd8a1251253642697345263183/pKSJdx0LQjwA.png" alt="" v-if="!isLike" @click="xihuan" class="btn2"/>
-			<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/fd4bb7fe1253642697335820115/5bxDeliAzawA.png" alt="" v-if="isLike" @click="xihuan" class="btn2"/>
-			<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/688756231253642697340802538/YN3tWSree8MA.png" alt="" v-if="isPaused" @click="pauseMusic" class="btn"/>
-			<img src="https://1317036699.vod2.myqcloud.com/8af1bb6fvodcq1317036699/f476eb271253642697335492542/50gRDFRPjN0A.png" alt="" v-if="!isPaused" @click="pauseMusic" class="btn"/>
-			<img src="https://1317036699.vod2.myqcloud.com/8af1bb6fvodcq1317036699/77fe12651253642697347343191/xjuhQtk3QIkA.png" alt="" v-if="!isSc" @click="shoucang" class="btn2"/>
-			<img src="https://1317036699.vod2.myqcloud.com/8af1bb6fvodcq1317036699/7f22ddc91253642697347665332/w2SC7VOfDmoA.png" alt="" v-if="isSc" @click="shoucang" class="btn2"/>
+			<img src="/static/xh.png" alt="" v-if="!isLike" @click="xihuan" class="btn2"/>
+			<img src="/static/xh2.png" alt="" v-if="isLike" @click="xihuan" class="btn2"/>
+			<img src="/static/Player, pause.png" alt="" v-if="isPaused" @click="pauseMusic" class="btn"/>
+			<img src="/static/Player, play.png" alt="" v-if="!isPaused" @click="pauseMusic" class="btn"/>
+			<img src="/static/sc.png" alt="" v-if="!isSc" @click="shoucang" class="btn2"/>
+			<img src="/static/sc2.png" alt="" v-if="isSc" @click="shoucang" class="btn2"/>
 		</view>
 
 	</view>
@@ -210,6 +210,13 @@
 					})
 				}
 			},
+
+			// 跳转testcode
+			totestcode() {
+				uni.navigateTo({
+					url: '/pages/testcode/testcode'
+				})
+			}
 		}
 	}
 </script>

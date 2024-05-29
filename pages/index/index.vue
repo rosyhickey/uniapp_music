@@ -36,7 +36,7 @@
 			<view class="one" v-for="(sItem,index) in firstSongs" :key="index" @click="start(sItem)">
 				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png"
 					alt="mojito" width="110rpx">
-					<i class="musictitle">{{sItem.title}}</i>
+					<span class="musictitle">{{sItem.title}}</span>
 			</view>
 <!-- 			<view class="one" @click="mojito()">
 				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png"
@@ -55,7 +55,7 @@
 			</view> -->
 		</view>
 
-		<!-- 随机祝福语 -->
+		<!-- 随机诗句 -->
 		<view class="wishbox" @click="change">
 			<!-- <span class="wishtext">"Bless You!"</span> -->
 			<span class="wishtext">{{wishtext}}</span>
@@ -105,11 +105,11 @@
 		},
 		onLoad() {
 			uni.request({
-				url: "https://api.uomg.com/api/rand.qinghua",
+				url: "https://v1.jinrishici.com/rensheng.txt",
 				success: (res) => {
-					this.wishtext = res.data.content
+					this.wishtext = res.data
 					uni.showToast({
-						title: '点击情话刷新',
+						title: '点击刷新',
 						duration: 1500
 					});
 				}
@@ -131,10 +131,10 @@
 				// console.log('state:',this.$store.state.isLogin);
 				// console.log('sessionstorage:',sessionStorage.isLogin);
 				uni.request({
-						url: "https://api.uomg.com/api/rand.qinghua",
+						url: "https://v1.jinrishici.com/rensheng.txt",
 						success: (res) => {
-							console.log(res.data.content);
-							this.wishtext = res.data.content
+							console.log(res.data);
+							this.wishtext = res.data
 						}
 					}),
 					console.log(this.date);
@@ -226,7 +226,7 @@
 		// 音乐播放区域
 		.musiclove {
 			position: relative;
-			height: 200rpx;
+			height: 220rpx;
 			// background-color: #FF66FF;
 			margin-top: 50rpx;
 			display: flex;
@@ -248,7 +248,9 @@
 					position: absolute;
 					height: 10rpx;
 					bottom: 25rpx;
-					text-decoration: underline;
+					font-size: 28rpx;
+					font-family: YOUYUAN;
+					// text-decoration: underline;
 					// padding-left: 50rpx;
 				}
 

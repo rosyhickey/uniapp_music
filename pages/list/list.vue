@@ -10,19 +10,19 @@
 			<view>
 				<view class="biaoqian-body">
 					<view class="tag-view">
-						<uni-tag text="周杰伦" type="primary" @click="mojito()" />
+						<uni-tag text="周杰伦" type="primary" @click="search({value:'周杰伦'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="尤克里里" type="success" @click="youkelili()" />
+						<uni-tag text="尤克里里" type="success" @click="search({value:'尤克里里'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="莫文蔚" type="warning" @click="yintian()" />
+						<uni-tag text="莫文蔚" type="warning" @click="search({value:'莫文蔚'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="English" type="error" @click="nobuy()" />
+						<uni-tag text="陈奕迅" type="error" @click="search({value:'陈奕迅'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="日语" @click="nobuy()" />
+						<uni-tag text="张国荣" @click="search({value:'张国荣'})" />
 					</view>
 				</view>
 			</view>

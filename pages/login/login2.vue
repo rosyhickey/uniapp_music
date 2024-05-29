@@ -88,6 +88,7 @@
 									// #endif
 									
 		// 需要注意的是vuex不具有持久性存储，当页面刷新时就会变成初始数据，如果需要保留修改后的数据建议调用数据的时候使用storage
+									// sessionStorage.setItem('name',this.valiFormData.username);
 									uni.setStorageSync('name', this.valiFormData.username);
 									store.state.username = this.valiFormData.username;
 									store.state.password = this.valiFormData.password;

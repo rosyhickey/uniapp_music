@@ -21,7 +21,7 @@
 		<!-- 问候语区域 -->
 		<view class="wenhou">
 			<view class="wenhoubox">
-				<span class="wenhoutext" @click="toSongDetail">早安! {{name}}</span>
+				<span class="wenhoutext"> 早安! {{name}}</span>
 			</view>
 		</view>
 		<!-- 分割线 -->
@@ -36,7 +36,7 @@
 			<view class="one" v-for="(sItem,index) in firstSongs" :key="index" @click="start(sItem)">
 				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png"
 					alt="mojito" width="110rpx">
-					<i class="musictitle">{{sItem.title}}</i>
+					<span class="musictitle">{{sItem.title}}</span>
 			</view>
 <!-- 			<view class="one" @click="mojito()">
 				<img src="https://1317036699.vod2.myqcloud.com/e9e53236vodsh1317036699/71736130243791580098542035/lXpANcmd0psA.png"
@@ -93,6 +93,7 @@
 		onShow() {
 			// console.log(store.state.username);
 			// this.name = store.state.username
+			// this.name = sessionStorage.name
 			try {
 				this.name = uni.getStorageSync('name');
 				if (this.name) {
@@ -105,9 +106,10 @@
 		},
 		onLoad() {
 			uni.request({
-				url: "https://api.uomg.com/api/rand.qinghua",
+				url: "https://v1.jinrishici.com/rensheng.txt",
 				success: (res) => {
-					this.wishtext = res.data.content
+					// console.log(res.data);
+					this.wishtext = res.data
 					uni.showToast({
 						title: '点击情话刷新',
 						duration: 1500
@@ -131,10 +133,10 @@
 				// console.log('state:',this.$store.state.isLogin);
 				// console.log('sessionstorage:',sessionStorage.isLogin);
 				uni.request({
-						url: "https://api.uomg.com/api/rand.qinghua",
+						url: "https://v1.jinrishici.com/rensheng.txt",
 						success: (res) => {
-							console.log(res.data.content);
-							this.wishtext = res.data.content
+							console.log(res.data);
+							this.wishtext = res.data
 						}
 					}),
 					console.log(this.date);
@@ -248,7 +250,11 @@
 					position: absolute;
 					height: 10rpx;
 					bottom: 25rpx;
-					text-decoration: underline;
+					color: #000000;
+					font-family: YOUYUAN;
+					font-size: 28rpx;
+					margin-top: 6rpx;
+					// text-decoration: underline;
 					// padding-left: 50rpx;
 				}
 

@@ -6,19 +6,19 @@
 			<view>
 				<view class="biaoqian-body">
 					<view class="tag-view">
-						<uni-tag text="周杰伦" type="primary" @click="start(1)" />
+						<uni-tag text="周杰伦" type="primary" @click="search({value:'周杰伦'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="尤克里里" type="success" @click="start(2)" />
+						<uni-tag text="尤克里里" type="success" @click="search({value:'尤克里里'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="莫文蔚" type="warning" @click="start(3)" />
+						<uni-tag text="莫文蔚" type="warning" @click="search({value:'莫文蔚'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="English" type="error" @click="nobuy()" />
+						<uni-tag text="陈奕迅" type="error" @click="search({value:'陈奕迅'})" />
 					</view>
 					<view class="tag-view">
-						<uni-tag text="日语" @click="nobuy()" />
+						<uni-tag text="张国荣" @click="search({value:'张国荣'})" />
 					</view>
 				</view>
 			</view>
@@ -122,6 +122,7 @@
 				// #endif
 			},
 
+			// 播放
 			start(e){
 				startSong.start(e.sid);
 				this.$store.state.zuijinSongs.unshift(e);
@@ -130,7 +131,19 @@
 					uni.navigateTo({
 						url: `/pages/songDetail/songDetail?sid=${e.sid}&p=${e.p}&title=${e.title}`
 					})
-			}
+			},
+			
+			// 更换搜索
+			search(res) {
+				// uni.showToast({
+				// 	title: '搜索：' + res.value,
+				// 	icon: 'none',
+				// }),
+				uni.navigateTo({
+					url:'/pages/search/search?key='+res.value
+				}),
+				console.log('搜索了',res.value)
+			},
 		},
 
 	}

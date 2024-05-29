@@ -22,18 +22,31 @@
 			<!-- 菜单栏区域 -->
 			<view class="menu-box">
 				<ul>
-					<li @click="shoucang()"> <uni-icons type="star-filled" size="30"
-							style="margin:5rpx 15rpx"></uni-icons> 我的收藏 <span> > </span>
+					<li @click="shoucang()">
+						<uni-icons type="star-filled" size="30" style="margin:5rpx 15rpx"></uni-icons>
+							我的收藏
+						<uni-icons type="right" style="margin-left: 200rpx;"> </uni-icons>
 					</li>
-					<li @click="xihuan()"> <uni-icons type="heart-filled" size="30"
-							style="margin:5rpx 15rpx"></uni-icons> 我的喜欢 <span> > </span>
+					<li @click="xihuan()"> 
+						<uni-icons type="heart-filled" size="30" style="margin:5rpx 15rpx"></uni-icons> 
+							我的喜欢 
+						<uni-icons type="right" style="margin-left: 200rpx;"> </uni-icons>
 					</li>
-					<li @click="zuijin"> <uni-icons type="headphones" size="30" style="margin:5rpx 15rpx"></uni-icons>
-						最近播放 <span> > </span> </li>
-					<li @click="yigou"> <uni-icons type="shop-filled" size="30" style="margin:5rpx 15rpx"></uni-icons>
-						已购音乐 <span> > </span> </li>
-					<li @click="about"> <uni-icons type="chat-filled" size="30" style="margin:5rpx 15rpx"></uni-icons>
-						关于我们 <span> > </span> </li>
+					<li @click="zuijin"> 
+						<uni-icons type="headphones" size="30" style="margin:5rpx 15rpx"></uni-icons>
+							最近播放 
+						<uni-icons type="right" style="margin-left: 200rpx;"> </uni-icons> 
+					</li>
+					<li @click="yigou"> 
+						<uni-icons type="shop-filled" size="30" style="margin:5rpx 15rpx"></uni-icons>
+							已购音乐 
+						<uni-icons type="right" style="margin-left: 200rpx;"> </uni-icons> 
+					</li>
+					<li @click="about"> 
+						<uni-icons type="chat-filled" size="30" style="margin:5rpx 15rpx"></uni-icons>
+							关于我们 
+						<uni-icons type="right" style="margin-left: 200rpx;"> </uni-icons> 
+					</li>
 				</ul>
 			</view>
 
@@ -121,6 +134,7 @@
 		},
 		onShow() {
 			// this.name = localStorage.name,
+			// this.name = sessionStorage.name
 			// this.src = localStorage.img
 			// this.name = store.state.username;
 			try {
@@ -160,10 +174,11 @@
 					uni.setStorage({
 						key: 'name',
 						data: val,
-						success: function () {
+						success: function() {
 							console.log('success');
 						}
 					});
+					// sessionStorage.name = val
 					// store.state.img = this.src
 					// localStorage.name = val
 					// 关闭窗口后，恢复默认内容
@@ -205,8 +220,8 @@
 					url: '/pages/login/login2'
 				})
 				// this.$store.state.isLogin = false,
-				sessionStorage.setItem('isLogin',false);
-			// sessionStorage.removeItem('isLogin')
+				sessionStorage.setItem('isLogin', false);
+				// sessionStorage.removeItem('isLogin')
 				// uni.clearStorage();
 			}
 		},
@@ -403,6 +418,7 @@
 		}
 
 		li {
+			font-family: YOUYUAN;
 			margin: auto;
 			width: 500rpx;
 			height: 70rpx;
@@ -411,7 +427,7 @@
 			border: #e4e4e4 1px solid;
 			margin-bottom: 10px;
 			border-radius: 100rpx;
-
+			padding-top: 6rpx;
 			span {
 				float: right;
 				margin-right: 20rpx;
